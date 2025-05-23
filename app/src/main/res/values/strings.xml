@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SolveTheEquation</string>
+    <string name="total_solved">Итого решено примеров</string>
+    <string name="correct">Правильно</string>
+    <string name="incorrect">Не правильно</string>
+    <string name="check">Проверка</string>
+    <string name="start">Старт</string>
+</resources>
