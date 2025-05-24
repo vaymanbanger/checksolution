@@ -1,87 +1,106 @@
 package com.example.solvetheequation
 
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.solvetheequation.databinding.ActivityMainBinding
-import kotlin.math.floor
+import kotlin.math.abs
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var currentAnswer = 0
-    private var correctAnswers = 0
-    private var incorrectAnswers = 0
-
     private val operations = listOf("+", "-", "*", "/")
+
+    private var correctCount = 0
+    private var incorrectCount = 0
+    private var times = mutableListOf<Long>()
+    private var realAnswer = 0.0
+    private var shownAnswer = 0.0
+    private var startTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.start.setOnClickListener { generateExample() }
-        binding.checkAnswer.setOnClickListener { checkAnswer() }
+        binding.btnStart.setOnClickListener { startExample() }
+        binding.btnRight.setOnClickListener { check(true) }
+        binding.btnWrong.setOnClickListener { check(false) }
 
-        binding.checkAnswer.isEnabled = false
+        setButtonsEnabled(false)
+        binding.btnStart.text = "Начать"
     }
 
-    private fun calculate(a: Int, text: String, b: Int): Double =
-        when (text) {
-            "+" -> a + b
-            "-" -> a - b
-            "*" -> a * b
-            "/" -> a / b.toDouble()
-            else -> a + b
-        }.toDouble()
-
-    private fun generateExample() {
-        var a: Int
-        var b: Int
-        var answer: Double
-        val operationText = operations[Random.nextInt(operations.size)]
-
-        do {
-            a = Random.nextInt(10, 100)
-            b = Random.nextInt(10, 100)
-            answer = calculate(a, operationText, b)
-        } while (answer !=
-            floor(answer))
-
-        currentAnswer = answer.toInt()
-
-        binding.firstNumber.text = a.toString()
-        binding.operation.text = operationText
-        binding.secondNumber.text = b.toString()
-        binding.answer.setText("")
-        binding.checkAnswer.isEnabled = true
-        binding.start.isEnabled = false
-        binding.answer.isEnabled = true
-        binding.root.setBackgroundColor(Color.WHITE)
-    }
-
-    private fun checkAnswer() {
-        val userInput = binding.answer.text.toString().toIntOrNull()
-
-        if (userInput == currentAnswer) {
-            correctAnswers++
-            binding.root.setBackgroundColor(Color.GREEN)
-        } else {
-            incorrectAnswers++
-            binding.root.setBackgroundColor(Color.RED)
+    private fun startExample() {
+        val a = Random.nextInt(10, 100)
+        val b = Random.nextInt(10, 100)
+        val op = operations.random()
+        realAnswer = when (op) {
+            "+" -> (a + b).toDouble()
+            "-" -> (a - b).toDouble()
+            "*" -> (a * b).toDouble()
+            "/" -> String.format("%.2f", a / b.toDouble()).toDouble()
+            else -> 0.0
         }
 
-        val total = correctAnswers + incorrectAnswers
-        val percent = if (total == 0) 0.0 else (correctAnswers.toDouble() / total) * 100
+        shownAnswer = if (Random.nextBoolean()) {
+            realAnswer
+        } else {
+            if (op == "/") {
+                (realAnswer + Random.nextDouble(-1.0, 1.0)).let { String.format("%.2f", it).toDouble() }
+            } else {
+                realAnswer + Random.nextInt(-2, 3)
+            }
+        }
 
-        binding.correctCount.text = correctAnswers.toString()
-        binding.incorrectCount.text = incorrectAnswers.toString()
-        binding.totalCount.text = total.toString()
-        binding.percentCorrect.text = "%.2f%%".format(percent)
+        binding.txtFirstOperand.text = a.toString()
+        binding.txtSecondOperand.text = b.toString()
+        binding.txtOperation.text = op
+        binding.txtResult.text = String.format("%.2f", shownAnswer)
 
-        binding.checkAnswer.isEnabled = false
-        binding.start.isEnabled = true
-        binding.answer.isEnabled = false
+        setButtonsEnabled(true)
+        binding.btnStart.text = "Следующий пример"
+        startTime = System.currentTimeMillis()
     }
 
+    private fun check(userThinksCorrect: Boolean) {
+        val userIsRight = areEqual(shownAnswer, realAnswer)
+        val timeTaken = System.currentTimeMillis() - startTime
+        times.add(timeTaken)
+
+        if (userThinksCorrect == userIsRight) {
+            correctCount++
+            binding.txtCheckResult.text = "ПРАВИЛЬНО"
+        } else {
+            incorrectCount++
+            binding.txtCheckResult.text = "НЕ ПРАВИЛЬНО"
+        }
+
+        updateStats()
+        setButtonsEnabled(false)
+    }
+
+    private fun setButtonsEnabled(enabled: Boolean) {
+        binding.btnRight.isEnabled = enabled
+        binding.btnWrong.isEnabled = enabled
+    }
+
+    private fun updateStats() {
+        val total = correctCount + incorrectCount
+        val percent = if (total == 0) 0.0 else (correctCount * 100.0 / total)
+        val min = times.minOrNull() ?: 0
+        val max = times.maxOrNull() ?: 0
+        val avg = if (times.isNotEmpty()) times.average() else 0.0
+
+        binding.txtCorrect.text = correctCount.toString()
+        binding.txtWrong.text = incorrectCount.toString()
+        binding.txtTotal.text = "Итого проверено примеров: $total"
+        binding.txtPercentageCorrectAnswers.text = "%.2f%%".format(percent)
+        binding.txtTimeMin.text = (min / 1000.0).toString()
+        binding.txtTimeMax.text = (max / 1000.0).toString()
+        binding.txtTimeAverage.text = "%.2f".format(avg / 1000)
+    }
+
+    private fun areEqual(a: Double, b: Double, epsilon: Double = 0.01): Boolean {
+        return abs(a - b) < epsilon
+    }
 }

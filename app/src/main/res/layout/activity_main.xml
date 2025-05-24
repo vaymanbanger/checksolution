@@ -1,158 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="8dp">
 
+    <!-- 1 ряд: Итого проверено примеров -->
     <TextView
+        android:id="@+id/txtTotal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
+        android:text="Итого проверено примеров: 0"
         android:gravity="center"
-        android:text="@string/total_solved"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/total_count"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:text="0" />
-
+    <!-- 2 ряд: Правильно / Неправильно -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:text="Правильно"
             android:gravity="center"
-            android:text="@string/correct"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:text="Неправильно"
             android:gravity="center"
-            android:text="@string/incorrect"
-            android:textSize="18sp" />
-
+            android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- 3 ряд: Счётчики -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/correct_count"
-            android:layout_width="match_parent"
+            android:id="@+id/txtCorrect"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:text="0"
             android:gravity="center"
-            android:text="0" />
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/incorrect_count"
-            android:layout_width="match_parent"
+            android:id="@+id/txtWrong"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:gravity="center"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- 4 ряд: ВРЕМЯ -->
+    <TextView
+        android:id="@+id/txt_time_label"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="ВРЕМЯ (сек)"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <!-- 5 ряд: Мин / Макс / Среднее -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Мин"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Макс"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Среднее"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <!-- 6 ряд: Результаты времени -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtTimeMin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0.0"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/txtTimeMax"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0" />
+            android:text="0.0" />
 
+        <TextView
+            android:id="@+id/txtTimeAverage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0.0"
+            android:gravity="center" />
     </LinearLayout>
 
+    <!-- 7 ряд: Процент -->
     <TextView
-        android:id="@+id/percent_correct"
+        android:id="@+id/txtPercentageCorrectAnswers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-
         android:text="0.00%"
         android:textSize="18sp" />
 
+    <!-- 8 ряд: Пример -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/first_number"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="00" />
-
-        <TextView
-            android:id="@+id/operation"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="+" />
-
-        <TextView
-            android:id="@+id/second_number"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="00" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="=" />
-
-        <EditText
-            android:id="@+id/answer"
+            android:id="@+id/txtFirstOperand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="00" />
+            android:text="00"
+            android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/txtOperation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtSecondOperand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="="
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:textSize="24sp" />
     </LinearLayout>
 
+    <!-- ДОБАВЛЕННЫЙ РЯД: результат проверки -->
+    <TextView
+        android:id="@+id/txtCheckResult"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text=""
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="#FF0000" />
+
+    <!-- 9 ряд: Кнопки ВЕРНО / НЕВЕРНО -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/check_answer"
-            android:layout_width="match_parent"
+            android:id="@+id/btnRight"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/check" />
+            android:layout_weight="1"
+            android:text="ВЕРНО"
+            android:enabled="false" />
 
+        <Button
+            android:id="@+id/btnWrong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="НЕВЕРНО"
+            android:enabled="false" />
     </LinearLayout>
 
-    <LinearLayout
+    <!-- 10 ряд: Кнопка старт -->
+    <Button
+        android:id="@+id/btnStart"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
-        <Button
-            android:id="@+id/start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/start" />
-
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="СТАРТ" />
 
 </LinearLayout>
