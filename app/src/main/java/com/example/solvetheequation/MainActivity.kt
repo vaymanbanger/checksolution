@@ -48,14 +48,18 @@ class MainActivity : AppCompatActivity() {
             if (op == "/") {
                 (realAnswer + Random.nextDouble(-1.0, 1.0)).let { String.format("%.2f", it).toDouble() }
             } else {
-                realAnswer + Random.nextInt(-2, 3)
+                realAnswer + Random.nextInt(-5, 6)
             }
         }
 
         binding.txtFirstOperand.text = a.toString()
         binding.txtSecondOperand.text = b.toString()
         binding.txtOperation.text = op
-        binding.txtResult.text = String.format("%.2f", shownAnswer)
+        binding.txtResult.text = if (op == "/" || shownAnswer % 1 != 0.0) {
+            String.format("%.2f", shownAnswer)
+        } else {
+            shownAnswer.toInt().toString()
+        }
 
         setButtonsEnabled(true)
         binding.btnStart.text = "Следующий пример"
@@ -70,9 +74,11 @@ class MainActivity : AppCompatActivity() {
         if (userThinksCorrect == userIsRight) {
             correctCount++
             binding.txtCheckResult.text = "ПРАВИЛЬНО"
+            binding.txtCheckResult.setTextColor(getColor(android.R.color.holo_green_dark))
         } else {
             incorrectCount++
             binding.txtCheckResult.text = "НЕ ПРАВИЛЬНО"
+            binding.txtCheckResult.setTextColor(getColor(android.R.color.holo_red_dark))
         }
 
         updateStats()

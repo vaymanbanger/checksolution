@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- 1 ряд: Итого проверено примеров -->
+
     <TextView
         android:id="@+id/txtTotal"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:textSize="18sp" />
 
-    <!-- 2 ряд: Правильно / Неправильно -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -39,7 +39,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- 3 ряд: Счётчики -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -65,7 +65,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- 4 ряд: ВРЕМЯ -->
+
     <TextView
         android:id="@+id/txt_time_label"
         android:layout_width="match_parent"
@@ -75,7 +75,7 @@
         android:gravity="center"
         android:textSize="18sp" />
 
-    <!-- 5 ряд: Мин / Макс / Среднее -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -86,15 +86,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Мин"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="Минимум" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Макс"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="Максимум" />
 
         <TextView
             android:layout_width="0dp"
@@ -104,7 +104,7 @@
             android:gravity="center" />
     </LinearLayout>
 
-    <!-- 6 ряд: Результаты времени -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -136,7 +136,7 @@
             android:gravity="center" />
     </LinearLayout>
 
-    <!-- 7 ряд: Процент -->
+
     <TextView
         android:id="@+id/txtPercentageCorrectAnswers"
         android:layout_width="match_parent"
@@ -146,7 +146,7 @@
         android:text="0.00%"
         android:textSize="18sp" />
 
-    <!-- 8 ряд: Пример -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -189,7 +189,7 @@
             android:textSize="24sp" />
     </LinearLayout>
 
-    <!-- ДОБАВЛЕННЫЙ РЯД: результат проверки -->
+
     <TextView
         android:id="@+id/txtCheckResult"
         android:layout_width="match_parent"
@@ -200,7 +200,7 @@
         android:gravity="center"
         android:textColor="#FF0000" />
 
-    <!-- 9 ряд: Кнопки ВЕРНО / НЕВЕРНО -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -225,7 +225,7 @@
             android:enabled="false" />
     </LinearLayout>
 
-    <!-- 10 ряд: Кнопка старт -->
+
     <Button
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
