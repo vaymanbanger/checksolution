@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Итого проверено примеров: 0"
+        android:text="@string/total"
         android:gravity="center"
         android:textSize="18sp" />
 
@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Правильно"
+            android:text="@string/correct"
             android:gravity="center"
             android:textSize="16sp" />
 
@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Неправильно"
+            android:text="@string/incorrect"
             android:gravity="center"
             android:textSize="16sp" />
     </LinearLayout>
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="ВРЕМЯ (сек)"
+        android:text="@string/time"
         android:gravity="center"
         android:textSize="18sp" />
 
@@ -87,20 +87,20 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Минимум" />
+            android:text="@string/min" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Максимум" />
+            android:text="@string/max" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Среднее"
+            android:text="@string/avg"
             android:gravity="center" />
     </LinearLayout>
 
@@ -116,7 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="0.0"
+            android:text="@string/numsmin"
             android:gravity="center" />
 
         <TextView
@@ -125,14 +125,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0.0" />
+            android:text="@string/numsmax" />
 
         <TextView
             android:id="@+id/txtTimeAverage"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="0.0"
+            android:text="@string/numsavg"
             android:gravity="center" />
     </LinearLayout>
 
@@ -143,7 +143,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="0.00%"
+        android:text="@string/percent"
         android:textSize="18sp" />
 
 
@@ -158,34 +158,34 @@
             android:id="@+id/txtFirstOperand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
+            android:text="@string/firstoperand"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txtOperation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
+            android:text="@string/operation"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txtSecondOperand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
+            android:text="@string/secondoperand"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="="
+            android:text="@string/equals"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/txtResult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
+            android:text="@string/result"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -213,15 +213,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ВЕРНО"
+            android:text="@string/correct_button"
             android:enabled="false" />
+
+        <Space
+            android:layout_width="7dp"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnWrong"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="НЕВЕРНО"
+            android:text="@string/incorrect_button"
             android:enabled="false" />
     </LinearLayout>
 
@@ -231,6 +235,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="СТАРТ" />
+        android:text="@string/start_button" />
 
 </LinearLayout>

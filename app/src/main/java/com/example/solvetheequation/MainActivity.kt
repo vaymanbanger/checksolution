@@ -6,6 +6,7 @@ import com.example.solvetheequation.databinding.ActivityMainBinding
 import kotlin.math.abs
 import kotlin.random.Random
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val operations = listOf("+", "-", "*", "/")
@@ -27,10 +28,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnWrong.setOnClickListener { check(false) }
 
         setButtonsEnabled(false)
-        binding.btnStart.text = "Начать"
     }
 
     private fun startExample() {
+        binding.txtCheckResult.text = ""
         val a = Random.nextInt(10, 100)
         val b = Random.nextInt(10, 100)
         val op = operations.random()
@@ -55,14 +56,14 @@ class MainActivity : AppCompatActivity() {
         binding.txtFirstOperand.text = a.toString()
         binding.txtSecondOperand.text = b.toString()
         binding.txtOperation.text = op
-        binding.txtResult.text = if (op == "/" || shownAnswer % 1 != 0.0) {
+        binding.txtResult.text = if (op == "/") {
             String.format("%.2f", shownAnswer)
         } else {
             shownAnswer.toInt().toString()
         }
 
         setButtonsEnabled(true)
-        binding.btnStart.text = "Следующий пример"
+        binding.btnStart.text = getString(R.string.nextex)
         startTime = System.currentTimeMillis()
     }
 
@@ -73,11 +74,11 @@ class MainActivity : AppCompatActivity() {
 
         if (userThinksCorrect == userIsRight) {
             correctCount++
-            binding.txtCheckResult.text = "ПРАВИЛЬНО"
+            binding.txtCheckResult.text = getString(R.string.correct)
             binding.txtCheckResult.setTextColor(getColor(android.R.color.holo_green_dark))
         } else {
             incorrectCount++
-            binding.txtCheckResult.text = "НЕ ПРАВИЛЬНО"
+            binding.txtCheckResult.text = getString(R.string.incorrect)
             binding.txtCheckResult.setTextColor(getColor(android.R.color.holo_red_dark))
         }
 
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.txtCorrect.text = correctCount.toString()
         binding.txtWrong.text = incorrectCount.toString()
-        binding.txtTotal.text = "Итого проверено примеров: $total"
+        binding.txtTotal.text = getString(R.string.resultexamples, total)
         binding.txtPercentageCorrectAnswers.text = "%.2f%%".format(percent)
         binding.txtTimeMin.text = (min / 1000.0).toString()
         binding.txtTimeMax.text = (max / 1000.0).toString()

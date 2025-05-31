@@ -1,8 +1,32 @@
 <resources>
     <string name="app_name">CheckSolution</string>
-    <string name="total_solved">Итого проверено примеров</string>
+    <string name="total">Итого проверено примеров: 0</string>
     <string name="correct">Правильно</string>
     <string name="incorrect">Не правильно</string>
     <string name="check">Проверка</string>
     <string name="start">Старт</string>
+
+    <string name="time">ВРЕМЯ (сек)</string>
+    <string name="min">Минимум</string>
+    <string name="max">Максимум</string>
+    <string name="avg">Среднее</string>
+    
+    <string name="numsmin">0.0</string>
+    <string name="numsmax">0.0</string>
+    <string name="numsavg">0.0</string>
+    <string name="percent">0.00%</string>
+    
+    <string name="firstoperand">00</string>
+    <string name="operation">+</string>
+    <string name="secondoperand">00</string>
+    <string name="equals">=</string>
+    <string name="result">00</string>
+
+
+    <string name="correct_button">ВЕРНО</string>
+    <string name="incorrect_button">НЕВЕРНО</string>
+    <string name="start_button">СТАРТ</string>
+
+    <string name="nextex">Следующий пример</string>
+    <string name="resultexamples">Итого проверено примеров: %1$d</string>
 </resources>
